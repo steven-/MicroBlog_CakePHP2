@@ -70,8 +70,14 @@ class User extends AppModel
             'message' => 'The bio may not be greater than 160 characters'
         ),
         'file' => array(
-            'rule'    => array('mimeType', array('image/jpeg', 'image/gif', 'image/png')),
-            'message' => 'Image format not allowed (only jpeg, png and gif)'
+            'Mime Type' => array(
+                'rule'    => array('mimeType', array('image/jpeg', 'image/gif', 'image/png')),
+                'message' => 'Image format not allowed (only jpeg, png and gif)'
+            ),
+            'Size' => array(
+                'rule' => array('fileSize', '<=', '2MB'),
+                'message' => 'The avatar file must be less than 2MB'
+            )
         )
     );
 
