@@ -67,4 +67,16 @@ class AppController extends Controller
 	}
 
 
+
+	public function constructClasses()
+	{
+	    if (Configure::read('debug') >= 1) {
+	    	$this->components[] = 'DebugKit.Toolbar';
+	    }
+
+	    parent::constructClasses();
+	}
+
+
+
 }
