@@ -28,8 +28,43 @@ App::uses('Controller', 'Controller');
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package   app.Controller
+ * @link    http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends Controller
+{
+
+	public $components = array(
+		'Auth' => array(
+			'loginRedirect' => array('controller' => 'messages', 'action' => 'index'),
+			'logoutRedirect' => array('controller' => 'messages', 'action' => 'index'),
+			'authError' => 'Please sign in',
+			'authenticate' => array(
+				'Blowfish' => array(
+					'fields' => array('username' => 'username', 'password' => 'password')
+				)
+			),
+			'authorize' => 'Controller'
+		),
+		'Security'
+	);
+
+
+	public function isAuthorized($user)
+	{
+	    return true;
+	}
+
+
+	public function beforeFilter()
+	{
+		$this->Security->blackHoleCallback = 'blackhole';
+	}
+
+	public function blackhole($type) {
+		if ('csrf' === $type) throw new ForbiddenException('Invalid CSRF token');
+		else throw new InternalErrorException('An error occured');
+	}
+
+
 }

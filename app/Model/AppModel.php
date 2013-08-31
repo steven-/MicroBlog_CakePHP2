@@ -31,5 +31,16 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class AppModel extends Model {
+class AppModel extends Model
+{
+    public function beforeValidate($options = array())
+    {
+        foreach($this->data[$this->alias] as $key => $value){
+            if(is_string($value)){
+                $this->data[$this->alias][$key] = trim(htmlspecialchars($value));
+            }
+        }
+    }
+
+
 }

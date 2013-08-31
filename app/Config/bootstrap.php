@@ -52,6 +52,7 @@ Cache::config('default', array('engine' => 'File'));
  * ));
  *
  */
+App::build(array('MicroBlog' => array('/app/Lib/MicroBlog')));
 
 /**
  * Custom Inflector rules, can be set to correctly pluralize or singularize table, model, controller names or whatever other
@@ -71,6 +72,7 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+
 
 /**
  * You can attach event listeners to the request lifecycle as Dispatcher Filter . By Default CakePHP bundles two filters:
