@@ -26,6 +26,15 @@
 
 Router::connect('/', array('controller' => 'messages', 'action' => 'index'));
 Router::connect('/message/new', array('controller' => 'messages', 'action' => 'add'));
+Router::connect('/message/delete/:id',
+                array(
+                    'controller' => 'messages',
+                    'action' => 'delete'
+                ),
+                array(
+                    'id' => '[0-9]+',
+                    'pass' => array('id')
+                ));
 
 Router::connect('/user', array('controller' => 'users', 'action' => 'index'));
 Router::connect('/user/:username',

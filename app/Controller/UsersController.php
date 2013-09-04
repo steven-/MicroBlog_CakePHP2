@@ -2,7 +2,7 @@
 
 class UsersController extends AppController
 {
-	public $components = array('Session', 'Security');
+	public $components = array('Session');
 
 	public function beforeFilter()
 	{
@@ -41,11 +41,11 @@ class UsersController extends AppController
 		  $this->User->id = $user['User']['id'];
 		  $this->User->avatar = $user['User']['avatar'];
 		  if ($this->User->save($this->request->data)) {
-		    return $this->redirect(array('action' => 'profile', $user['User']['username']));
+		    return $this->redirect(array('action' => 'profile', 'username' =>  $user['User']['username']));
 		  }
 		}
 
-		if( ! $this->request->data) {
+		if ( ! $this->request->data) {
 			$this->request->data = $user;
 		}
 

@@ -17,15 +17,19 @@ class NavLiHelper extends AppHelper
      */
     public function create($fragments, $text, $icon = null, $class = '', $alternateActiveConditions = null)
     {
-        $li  = '<a href="' . $this->Html->url($fragments) . '" >';
+        $li  = '<a href="' . $this->Html->url($fragments) . '">';
         if ($icon) $li .= '<i class="icon-' . $icon . '"></i>';
         $li .= $text;
         $li .= '</a>';
 
-        if ($this->isActive($fragments, $alternateActiveConditions)) $class = 'active ' . $class;
-        if (strlen($class)) $class = 'class="' . $class . '"';
+        if ($this->isActive($fragments, $alternateActiveConditions)) {
+            $class  = $class
+                      ?  'active ' . $class
+                      :  'active';
+        }
+        if (strlen($class)) $class = ' class="' . $class . '"';
 
-        $li = '<li ' . $class . '>' . $li . '</li>';
+        $li = '<li' . $class . '>' . $li . '</li>';
 
         return $li;
     }

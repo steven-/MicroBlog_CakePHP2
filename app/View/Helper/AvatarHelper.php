@@ -3,6 +3,7 @@
 App::uses('AppHelper', 'View/Helper');
 
 class AvatarHelper extends AppHelper {
+
     public function display($user)
     {
         $imgSrc = empty($user['avatar'])

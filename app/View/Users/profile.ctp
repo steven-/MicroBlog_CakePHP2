@@ -22,7 +22,7 @@
                 <div>
                     <span><?php echo $message['created'] ?></span>
                     <?php if (AuthComponent::user('username') === $user['User']['username']): ?>
-                        <a href="<?php echo $this->Html->url(array('controller' => 'messages', 'action' => 'delete', $message['id'])); ?>">
+                        <a href="<?php echo $this->Html->url(array('controller' => 'messages', 'action' => 'delete', 'id' => $message['id'])); ?>">
         					Delete
         					<i class="icon-remove"></i>
                         </a>

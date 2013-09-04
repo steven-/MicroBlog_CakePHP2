@@ -33,9 +33,7 @@
 			</div>
 		</header>
 
-
 		<?php echo $this->element('nav'); ?>
-
 
 		<section>
 			<?php echo $this->Session->flash(); ?>

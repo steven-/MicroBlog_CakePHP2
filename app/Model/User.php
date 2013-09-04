@@ -55,7 +55,7 @@ class User extends AppModel
         ),
         'password' => array(
             'rule' => 'notEmpty',
-            'message' => 'niké de ta race',
+            'message' => 'Please choose a password',
             'required' => 'create'
         ),
         'password_confirmation' => array(
@@ -67,7 +67,8 @@ class User extends AppModel
         ),
         'bio' => array(
             'rule' => array('maxlength', 160),
-            'message' => 'The bio may not be greater than 160 characters'
+            'message' => 'The bio may not be greater than 160 characters',
+            'required' => 'update'
         ),
         'file' => array(
             'Mime Type' => array(
@@ -144,10 +145,12 @@ class User extends AppModel
    }
 
 
-
     public function sameAs($check, $otherField)
     {
         $formValues = $this->data[$this->name];
+        if ( ! isset($formValues[$otherField])) {
+            return false;
+        }
         return $formValues[$otherField] === $formValues[key($check)];
     }
 

@@ -18,9 +18,6 @@
 
         echo $this->Form->input('bio', array('type' => 'textarea', 'label' => 'Bio'));
     ?>
-
 </fieldset>
 
-
 <?php echo $this->Form->end('Save'); ?>
-
