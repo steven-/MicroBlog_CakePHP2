@@ -2,8 +2,7 @@
 	<?php foreach ($users as $user): ?>
         <li>
         <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'profile', 'username' => $user['User']['username'])); ?>">
-            <?php echo $this->Avatar->display($user['User']); ?>
-
+            <?php echo $this->Avatar->display($user['User']);  // cf ViewHelper?>
             <strong><?php echo $user['User']['username'] ?></strong>
             <i class="icon-chevron-right"></i>
             <?php if ( ! empty($user['User']['bio'])): ?>

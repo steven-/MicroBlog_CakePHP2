@@ -1,13 +1,13 @@
 <div id="profile">
 	<div>
-		<?php if (AuthComponent::user('username') === $user['User']['username']): ?>
+		<?php if (AuthComponent::user('username') === $user['User']['username']): // profile's owner ? ?>
             <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'edit')); ?>">
                 Edit your profile
                 <i class="icon-user"></i>
             </a>
         <?php endif ?>
         <h2>
-            <?php echo $this->Avatar->display($user['User']); ?>
+            <?php echo $this->Avatar->display($user['User']); // cf View/Helper ?>
             <?php echo $user['User']['username'] ?>
         </h2>
         <?php if ( ! empty($user['User']['bio'])): ?>
@@ -21,7 +21,7 @@
             <li>
                 <div>
                     <span><?php echo $message['created'] ?></span>
-                    <?php if (AuthComponent::user('username') === $user['User']['username']): ?>
+                    <?php if (AuthComponent::user('username') === $user['User']['username']): // message's author ? ?>
                         <a href="<?php echo $this->Html->url(array('controller' => 'messages', 'action' => 'delete', 'id' => $message['id'])); ?>">
         					Delete
         					<i class="icon-remove"></i>
