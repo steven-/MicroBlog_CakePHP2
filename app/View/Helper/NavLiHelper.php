@@ -2,20 +2,35 @@
 
 App::uses('AppHelper', 'View/Helper');
 
+
+
+/**
+ * Help to build list items for the app menu
+ */
 class NavLiHelper extends AppHelper
 {
 
     public $helpers = array('Html');
 
     /**
-     * @param fragments: array of route parameters (controller, action, extras)
-     * @param $text: text to be displayed in the anchor tag
-     * @param $icon: icon name if there is one for this list item
-     * @param $class: additional class (e.g. 'connection')
-     * @param $alternateActiveConditions: array of route parameters (controllers, ...)
+     * CREATE
+     *
+     * The main goal of this helper is to set the 'active' class automatically to the list item
+     * when the current request params match the link params.
+     * If it does not match, this helper also check if the current request params match another set
+     * of params ($alternateActiveConditions) if provided.
+     * It's useful in this app for the 'User' tab which has to be active even if the user is editing
+     * his profile (when the link of this tab does not lead to the edit form but the user's profile).
+     *
+     *
+     * @param array $fragments - route parameters (controller, action, extras)
+     * @param string $text - text to be displayed in the anchor tag
+     * @param string $icon - icon name if there is one for this list item
+     * @param string $class - additional class (e.g. 'connection')
+     * @param array $alternateActiveConditions - route parameters (controllers, ...)
      * @return String
      */
-    public function create($fragments, $text, $icon = null, $class = '', $alternateActiveConditions = null)
+    public function create($fragments, $text, $icon = null, $class = null, $alternateActiveConditions = null)
     {
         $li  = '<a href="' . $this->Html->url($fragments) . '">';
         if ($icon) $li .= '<i class="icon-' . $icon . '"></i>';

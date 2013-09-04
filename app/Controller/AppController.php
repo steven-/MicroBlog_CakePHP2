@@ -61,7 +61,8 @@ class AppController extends Controller
 		$this->Security->blackHoleCallback = 'blackhole';
 	}
 
-	public function blackhole($type) {
+	public function blackhole($type)
+	{
 		if ('csrf' === $type) throw new ForbiddenException('Invalid CSRF token');
 		else throw new InternalErrorException('An error occured');
 	}
@@ -76,7 +77,4 @@ class AppController extends Controller
 
 	    parent::constructClasses();
 	}
-
-
-
 }
